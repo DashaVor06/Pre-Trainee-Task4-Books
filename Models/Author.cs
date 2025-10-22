@@ -1,10 +1,9 @@
 ﻿namespace Books.Models
 {
-    public class Authors
+    public class Author
     {
-        public string Author { get; set; }
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public DateTime DateOfBirth { get; set; }
     }
 }
