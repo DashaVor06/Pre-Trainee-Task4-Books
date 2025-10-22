@@ -41,7 +41,7 @@ namespace Books.Services
             {
                 if (_reposAuthor.Delete(id))
                 {
-                    foreach (Book book in _reposBook.GetAll())
+                    foreach (Book book in _reposBook.GetAll().ToList())
                     {
                         if (book.AuthorId == id)
                         {
@@ -53,6 +53,5 @@ namespace Books.Services
             }
             return false;
         }
-        
     }
 }

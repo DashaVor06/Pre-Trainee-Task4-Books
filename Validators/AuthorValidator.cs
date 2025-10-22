@@ -36,7 +36,7 @@ namespace Books.Validators
         }
         public static bool CheckAuthorForCreate( List<Author> listAuthors, Author? author)
         {
-            return (author != null && CheckName(author.Name) && !CheckNameExists(listAuthors, author.Name) && !CheckIdExists(listAuthors, author.Id));
+            return (author != null && CheckName(author.Name) && !CheckNameExists(listAuthors, author.Name) && CheckId(listAuthors, author.Id));
         }
         public static bool CheckAuthorForUpdateDelete(List<Author> listAuthors, Author? author)
         {

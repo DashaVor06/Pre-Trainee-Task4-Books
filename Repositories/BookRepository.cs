@@ -5,14 +5,13 @@ namespace Books.Repositories
 {
     public class BookRepository : IRepository<Book>
     {
-        private DatabaseClass _database = new DatabaseClass();
         public List<Book> GetAll()
         {
-            return _database.BooksTable;
+            return DatabaseClass.BooksTable;
         }
         public Book? GetById(int id)
         {
-            foreach (Book book in _database.BooksTable)
+            foreach (Book book in DatabaseClass.BooksTable)
             {
                 if (book.Id == id)
                 {
@@ -23,16 +22,16 @@ namespace Books.Repositories
         }
         public bool Create(Book book)
         {
-            _database.BooksTable.Add(book);
+            DatabaseClass.BooksTable.Add(book);
             return true;
         }
         public bool Update(Book book)
-        {
-            for (int i = 0; i < _database.BooksTable.Count; i++)
+        {   
+            for (int i = 0; i < DatabaseClass.BooksTable.Count; i++)
             {
-                if (_database.BooksTable[i].Id == book.Id)
+                if (DatabaseClass.BooksTable[i].Id == book.Id)
                 {
-                    _database.BooksTable[i] = book;
+                    DatabaseClass.BooksTable[i] = book;
                     return true;
                 }
             }
@@ -40,11 +39,11 @@ namespace Books.Repositories
         }
         public bool Delete(int id)
         {
-            for (int i = 0; i < _database.BooksTable.Count; i++)
+            for (int i = 0; i < DatabaseClass.BooksTable.Count; i++)
             {
-                if (_database.BooksTable[i].Id == id)
+                if (DatabaseClass.BooksTable[i].Id == id)
                 {
-                    _database.BooksTable.Remove(_database.BooksTable[i]);
+                    DatabaseClass.BooksTable.Remove(DatabaseClass.BooksTable[i]);
                     return true;
                 }
             }
