@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "..\Interface\Bu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "..\Busines logic\Data.csproj", "{C562D95A-CFE9-4D45-9553-E0D1FA244F98}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E5E56DF-DC83-4976-B1E5-27B95BD56533} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{AE797FC2-5FB2-42CF-AFC2-E49BA5CCF9DA} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{C562D95A-CFE9-4D45-9553-E0D1FA244F98} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84FA4EB7-AB86-412A-AC64-3C1D9E360F6F}
