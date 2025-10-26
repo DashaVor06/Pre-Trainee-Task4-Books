@@ -1,46 +1,51 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Books.Models;
-using Books.Services;
+using Business.Services;
+using Business.DTO;
 
-namespace Books.Controllers
+namespace Interface.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AuthorController : ControllerBase
     {
-        private readonly AuthorService _authorService = new AuthorService();
+        AuthorService _authorService;
+        public AuthorController(AuthorService authorService)
+        {
+            _authorService = authorService;
+        }
 
         [HttpGet]
-        public ActionResult<List<Book>> Get()
+        public ActionResult<List<AuthorDTO>> Get()
         {
-            return Ok(_authorService.GetAllAuthors());
+            return Ok(_authorService.GetAll());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<BookAndAuthor> Get(int id)
+        public ActionResult<BookAndAuthorDTO> Get(int id)
         {
-            Author? author = _authorService.GetById(id);
-            if (author != null)
-                return Ok(author);
+            AuthorDTO? res = _authorService.GetByIdOrNull(id);
+            if (res != null)
+                return Ok(res);
             else
                 return NotFound();
         }
 
         [HttpPost]
-        public ActionResult Post(Author author)
+        public ActionResult Post(AuthorDTO author)
         {
-            if (_authorService.Create(author))
-                return Ok();
+            AuthorDTO? res = _authorService.CreateOrNull(author);
+            if (res != null)
+                return Ok(author);
             else
                 return NotFound();
-
         }
 
         [HttpPut]
-        public ActionResult Put(Author author)
+        public ActionResult Put(AuthorDTO author)
         {
-            if (_authorService.Update(author))
-                return Ok();
+            AuthorDTO? res = _authorService.UpdateOrNull(author);
+            if (res != null)
+                return Ok(author);
             else
                 return NotFound();
         }

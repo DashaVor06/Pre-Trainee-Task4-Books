@@ -1,46 +1,51 @@
-﻿using Books.Models;
-using Books.Services;
+﻿using Business.Services;
+using Business.DTO;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Books.Controllers
+namespace Interface.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly BookService _bookService = new BookService();
+        BookService _bookService;
+        public BookController(BookService bookService)
+        {
+            _bookService = bookService;
+        }
 
         [HttpGet]
-        public ActionResult<List<Book>> Get()
+        public ActionResult<List<BookDTO>> Get()
         {
             return Ok(_bookService.GetAllBooks());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<BookAndAuthor> Get(int id)
+        public ActionResult<BookAndAuthorDTO> Get(int id)
         {
-            BookAndAuthor? book = _bookService.GetById(id);
-            if (book != null)
-                return Ok(book);
+            BookAndAuthorDTO? res = _bookService.GetByIdOrNull(id);
+            if (res != null)
+                return Ok(res);
             else
                 return NotFound();
         }
 
         [HttpPost]
-        public ActionResult Post(Book book)
+        public ActionResult Post(BookDTO book)
         {
-            if (_bookService.Create(book))
-                return Ok();
+            BookDTO? res = _bookService.CreateOrNull(book);
+            if (res != null)
+                return Ok(res);
             else
-                return NotFound();
-            
+                return NotFound();         
         }
 
         [HttpPut]
-        public ActionResult Put(Book book)
+        public ActionResult Put(BookDTO book)
         {
-            if (_bookService.Update(book))
-                return Ok();
+            BookDTO? res = _bookService.UpdateOrNull(book);
+            if (res != null)
+                return Ok(res);
             else
                 return NotFound();
         }
